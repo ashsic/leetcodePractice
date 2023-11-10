@@ -49,4 +49,31 @@ class Solution:
         mergeSort(nums)
         return nums
     
-# Quick sort coming soon...
+# Quick sort:
+
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+        def quickSort(arr, s, e):
+            if e - s + 1 <= 1:
+                return
+
+            pivot = arr[e]
+            j = s
+
+            for i in range(s, e):
+                if arr[i] < pivot:
+                    temp = arr[j]
+                    arr[j] = arr[i]
+                    arr[i] = temp
+                    j+=1
+            arr[e] = arr[j]
+            arr[j] = pivot
+
+
+            quickSort(arr, s, j-1)
+            quickSort(arr, j+1, e)
+
+
+        quickSort(nums, 0, len(nums)-1)
+
+        return nums
