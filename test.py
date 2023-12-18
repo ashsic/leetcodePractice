@@ -1,4 +1,5 @@
-dict = {1: 3}
+data = [None] * 8
+print(data)
 
-print(dict[1])
-val = dict[2]
+data[1] = 123
+print(data)
