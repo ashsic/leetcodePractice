@@ -27,3 +27,34 @@ class Solution:
                 maxCount = max(maxCount, matrixDFS(row, col))
             
         return maxCount
+    
+# Less efficient soln using set not in place:
+    
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        def matrixDFS(r, c):
+            if r < 0 or c < 0 or r == rows or c == cols or grid[r][c] == 0 or (r,c) in visit:
+                return 0
+            
+            visit.add((r,c))
+
+            count = 1
+            count += matrixDFS(r + 1, c)
+            count += matrixDFS(r - 1, c)
+            count += matrixDFS(r, c + 1)
+            count += matrixDFS(r, c - 1)
+
+            return count
+        
+        rows = len(grid)
+        cols = len(grid[0])
+        maxCount = 0
+        visit = set()
+
+        for x in range(rows * cols):
+            row = x // cols
+            col = x % cols
+            if grid[row][col] == 1 and (row, col) not in visit:
+                maxCount = max(maxCount, matrixDFS(row, col))
+            
+        return maxCount
