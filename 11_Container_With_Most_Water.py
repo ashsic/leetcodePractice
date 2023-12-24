@@ -12,3 +12,21 @@ class Solution:
                 r-=1
         
         return totalWater
+    
+# Redoing two pointer questions right now, came to the same result more or less
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        L = 0
+        R = len(height) - 1
+        maxVolume = 0
+
+        while L <= R:
+            maxVolume = max((R - L) * min(height[L], height[R]), maxVolume)
+
+            if height[L] < height[R]:
+                L += 1
+            else:
+                R -= 1
+        
+        return maxVolume

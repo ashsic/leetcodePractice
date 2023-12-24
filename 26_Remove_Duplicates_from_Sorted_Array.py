@@ -8,3 +8,20 @@ class Solution:
                 x+=1
         
         return x
+
+# Two pointer algorithm that almost looks like var window. 
+# took me a while for an easy...
+
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        L = 1
+
+        for R in range(1, len(nums)):
+            if nums[L] <= nums[L - 1]:
+                temp = nums[L]
+                nums[L] = nums[R]
+                nums[R] = temp
+            if nums[L] > nums[L - 1]:
+                L += 1
+
+        return L
