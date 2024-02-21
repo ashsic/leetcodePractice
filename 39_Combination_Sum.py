@@ -60,3 +60,27 @@ class Solution:
         curr = []
         dfs(0, 0)
         return combinations
+    
+# More efficient solution (lower big O):
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        def dfs(i, total):
+            if i >= len(candidates) or total >= target:
+                if total == target:
+                    res.append(cur.copy())
+                return
+            
+            for j in range(i, len(candidates)):
+                cur.append(candidates[j])
+                total += candidates[j]
+                dfs(j, total)
+                total -= candidates[j]
+                cur.pop()
+        
+        res = []
+        cur = []
+
+        dfs(0,0)
+
+        return res
